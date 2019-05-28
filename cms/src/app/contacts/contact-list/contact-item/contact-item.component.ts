@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Contact } from '../../contact.model';
+import { ContactService } from '../../contact.service';
 
 @Component({
   selector: 'cms-contact-item',
@@ -7,13 +8,11 @@ import { Contact } from '../../contact.model';
   styleUrls: ['./contact-item.component.css']
 })
 export class ContactItemComponent implements OnInit {
-  @Input() contact: Contact;
-  @Output() contactSelected = new EventEmitter<void>();
-    constructor() { }
-
+@Input() contact: Contact;
+  constructor(private contactService: ContactService) { }
   ngOnInit() {
   }
   onSelected() {
-    this.contactSelected.emit();
-  }
+    this.contactService.selectedContactEvent.emit(this.contact);
+    }
 }
