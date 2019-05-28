@@ -16,7 +16,7 @@ documents: Document[]=[];
   getDocuments() {
     return this.documents.slice();
    }
-   getDocument(id: number): Document {
+   getDocument(id: string): Document {
     for (const document of this.documents) {
       if (document.id === id) {
         return document;
